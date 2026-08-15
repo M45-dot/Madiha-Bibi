@@ -1,0 +1,440 @@
+/* ===========================
+   GLOBAL STYLES
+   =========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* ===========================
+   CLOCK CONTAINER
+   =========================== */
+
+.clock-container {
+    max-width: 1200px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.6s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===========================
+   HEADER
+   =========================== */
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    font-size: 2.8rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* ===========================
+   CONTROLS
+   =========================== */
+
+.controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+}
+
+.btn-secondary:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ===========================
+   TIMEZONE GRID
+   =========================== */
+
+.timezone-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* ===========================
+   TIMEZONE CARD
+   =========================== */
+
+.timezone-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.timezone-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.timezone-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #4facfe);
+}
+
+.timezone-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.remove-btn {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+    background: #ee5a52;
+    transform: scale(1.1);
+}
+
+.timezone-label {
+    font-size: 0.85rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.digital-time {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #667eea;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timezone-info {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.timezone-offset {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 600;
+    background: rgba(102, 126, 234, 0.1);
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-top: 8px;
+}
+
+.timezone-date {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 12px;
+    font-weight: 500;
+}
+
+/* ===========================
+   MODAL
+   =========================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background: white;
+    margin: 10% auto;
+    padding: 35px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideInModal 0.3s ease;
+}
+
+@keyframes slideInModal {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    color: #999;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #333;
+}
+
+.modal-content h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.modal-content select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.modal-content select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.modal-content .btn {
+    width: 100%;
+}
+
+/* ===========================
+   EMPTY STATE
+   =========================== */
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+@media (max-width: 768px) {
+    .clock-container {
+        padding: 25px;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+    }
+
+    .timezone-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .digital-time {
+        font-size: 2.2rem;
+    }
+
+    .controls {
+        gap: 10px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .clock-container {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .header h1 {
+        font-size: 1.6rem;
+    }
+
+    .timezone-card {
+        padding: 20px;
+    }
+
+    .digital-time {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
+
+    .timezone-name {
+        font-size: 1rem;
+    }
+
+    .remove-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+    }
+
+    .modal-content {
+        width: 90%;
+        padding: 25px;
+    }
+}
+
+/* ===========================
+   ANIMATIONS
+   =========================== */
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.timezone-card {
+    animation: slideIn 0.6s ease;
+}
+
+@keyframes slideInCard {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.timezone-card.new {
+    animation: slideInCard 0.5s ease;
+}
